@@ -1,0 +1,41 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <div id="tab">
+        <br><br><br><center><h2>Accepted Agencies</h2></center><br><br><br>
+    <form action="" method="post">
+        <table align="center" border="2">
+            <tr>
+                <th>Agency Name</th>
+                <th>Email</th>
+                <th>Logo</th>
+                <th>Proof</th>
+                <th>Crime Type</th>
+                <th colspan="2">Action</th>
+            </tr>
+            {% for i in AA %}
+            <tr>
+                <td>{{i.ag_name}}</td>
+                <td>{{i.ag_email}}</td>
+                <td><img src="{{i.ag_logo.url}}" width="120px" height="120px"></td>
+                <td><img src="{{i.ag_proof.url}}" width="120px" height="120px"></td>
+                <td>{{i.crimetype}}</td>
+                <td><a href="{% url 'webadmin:RejectAgency' i.id %}">Reject</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+</body>
+</html>
+<br><br><br><br>
+{% endblock content %}

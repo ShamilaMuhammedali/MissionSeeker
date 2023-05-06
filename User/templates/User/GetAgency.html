@@ -1,0 +1,23 @@
+{% comment %} {% extends 'User/Head.html' %}
+{% load static %}
+{%  block content %} {% endcomment %}
+<table align="center" cellpadding="50" style="border-collapse:collapse">    
+    <tr>
+        {%for i in AG %}
+        <td>
+            <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+                <p><image src={{i.ag_logo.url}} width="100px" height="100px"></p>
+                <p>{{i.ag_name}}</p>
+                <p>{{i.ag_email}}</p>
+                <p>{{i.crimetype}}</p>
+                <p><a href="{% url 'user:Crime' i.id %}">Request</a></p>
+            </div>
+        <td>
+            {% if forloop.counter|divisibleby:4 %}
+    </tr>
+    <tr>
+            {% endif %}
+            
+        {%endfor%}
+</table><br><br>
+{% comment %} {% endblock content %} {% endcomment %}

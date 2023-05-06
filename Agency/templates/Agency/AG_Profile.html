@@ -1,0 +1,46 @@
+{% extends 'agency/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User_Profile</title>
+</head>
+
+<body>
+    {%  block content %}
+    <br><br><br><br>
+    <div id="tab">
+        <br><br><center><h2>Profile</h2></center><br><br>
+    <form action="" method="post">
+        <table border="3" align="center">
+            <tr>
+                <td colspan="2" align="center"><img src="{{AP.ag_logo.url}}" width="120px" height="120px"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{AP.ag_name}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{AP.ag_email}}</td>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td>{{AP.ag_proof}}</td>
+            </tr>
+            <tr>
+                <td><a href="{% url 'agency:AG_EditProfile' AP.id %}">EditProfile</a></td>
+                <td><a href="{% url 'agency:AG_ChangePwd' AP.id %}">ChangePassword</a></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+
+</html>
+<br><br>
+{% endblock content %}

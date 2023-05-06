@@ -1,0 +1,61 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place</title>
+</head>
+<body>
+    {% block content %}
+    <div id="tab">
+        <br><br><center><h2>Place</h2></center><br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr>
+                <td>District</td>
+                <td><select name="sel_dis" id="">
+                    <option value="">----select----</option>
+                    {% for i in DS %}
+                        <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td><input type="text" name="txt_plc"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="save" value="SAVE">
+                    <input type="reset" name="cancel" value="CANCEL">
+                </td>
+            </tr>
+        </table>
+        <br><br><br><br>
+        <table align="center" border="2">
+            <tr>
+                <th>District</th>
+                <th>Place</th>
+                <th colspan="2">Action</th>
+            </tr>
+            
+            {% for i in Plc %}
+                <tr>
+                    <td>{{i.district}}</td>
+                    <td>{{i.place}}</td>
+                    <td><a href="{% url 'webadmin:Dlt_Plc' i.id %}">Delete</a></td>
+                    <td><a href="{% url 'webadmin:Up_Plc' i.id %}">Edit</a></td>
+                </tr>
+            {% endfor %}
+                
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+{% endblock content %}

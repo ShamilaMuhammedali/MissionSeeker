@@ -1,0 +1,75 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%  block content %}
+    <br><br><br><br>
+    <div id="tab">
+        <br><br><center><h2>Search Agency</h2></center><br><br>
+    <form action="" method="post" id="SearchAgency" data-url="{% url 'user:GetAgency' %}">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr>
+                
+                <td>Crime Type</td>
+                <td><select name="sel_crimetype" id="crimetype">
+                    <option value="">----select----</option>
+                    
+                    {% for i in CT %}
+                        <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                        
+                </select>
+                </td>
+            </tr>
+        </table>
+        <br><br><br>
+        <div id="data">
+            <table align="center" cellpadding="50" style="border-collapse:collapse">    
+                <tr>
+                    {%for i in Ag %}
+                    <td>
+                        <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+                            <p><image src={{i.ag_logo.url}} width="100px" height="100px"></p>
+                            <p>{{i.ag_name}}</p>
+                            <p>{{i.ag_email}}</p>
+                            <p>{{i.crimetype}}</p>
+                            <p></p>
+                        </div>
+                    <td>
+                        {% if forloop.counter|divisibleby:4 %}
+                </tr>
+                <tr>
+                        {% endif %}
+                        
+                    {%endfor%}
+            </table><br><br>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $("#crimetype").change(function () {
+            var cid = $(this).val();
+            var ur = $("#SearchAgency").attr("data-url");
+            $.ajax({
+                url: ur,
+                data: { crimetype: cid },
+                success: function (data) {
+                    $("#data").html(data);
+                },
+            });
+        });
+    </script>
+{% endblock content %}
+    

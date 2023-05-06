@@ -1,0 +1,87 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%  block content %}
+    <div id="tab">
+        <br><br><center><h2>Crime</h2></center><br><br>
+        {{ERROR}}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="2">
+
+            <tr>
+                <td>Crime Type</td>
+                <td><select name="sel_crimetype" id="crimetype">
+                    <option value="">----select----</option>
+                    
+                    {% for i in CT %}
+                        <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                        
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><textarea name="txtdes" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="save" value="SEND">
+                    <input type="reset" name="cancel" value="CANCEL">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="hidden" name="en_key" id="key"></td>
+            </tr>
+        </table>
+        <br><br><br>
+        <table border="1" align="center">
+            <tr>
+                <th>Crime Type</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            
+            {% for i in CM %}
+            <tr>
+                <td>{{i.crimetype}}</td>
+                <td>{{i.crime_description}}</td>
+                <td>
+                    {% if i.c_vsts == 0 %}
+                    <p>Pending..</p>
+                    {% elif i.c_vsts == 1 %}
+                    <a href="{% url 'user:User_Key' i.id %}">Chat Now</a>
+                    {% else %}
+                    <p>Rejected..</p>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+                
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+
+<script>
+    function myFunction() {
+      let person = prompt("Please enter your Key", "");
+      if (person != null) {
+        document.getElementById("key").innerHTML =
+        "Hello " + person + "! How are you today?";
+      }
+    }
+    </script>
+
+{% endblock content %}

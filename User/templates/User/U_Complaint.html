@@ -1,0 +1,54 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%  block content %}
+    <br><br><br><br>
+    <div id="tab">
+        <br><br><center><h2> User Complaint</h2></center><br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr>
+                <td>Content</td>
+                <td><textarea name="txtcontent" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="save" value="SEND">
+                    <input type="reset" name="cancel" value="CANCEL">
+                </td>
+            </tr>
+        </table>
+        <br><br><br><br><br>
+        <table align="center" border="1">
+            <tr>
+                <th>Content</th>
+                <th>Reply</th>
+            </tr>
+            {% for i in CMP %}
+            <tr>
+                <td>{{i.content}}</td>
+                <td>
+                    {% if i.c_status == 0 %}
+                    <p>Not Replied</p>
+                    {% else %}
+                    {{i.reply}}
+                    {% endif %} 
+                </td>
+            </tr>  
+            {% endfor %}
+        </table>
+        </form>
+        </div>
+</body>
+</html>
+<br><br>
+{% endblock content %} 

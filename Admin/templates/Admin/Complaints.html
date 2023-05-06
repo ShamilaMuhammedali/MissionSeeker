@@ -1,0 +1,68 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <div id="tab">
+        <br><br><center><h2><u>Complaints</u></h2></center><br><br>
+    <form action="" method="post">
+        <center><h2>User Complaints</h2></center><br>
+        <table border="1" align="center">
+            <tr>
+                <th>User Name</th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+            {% for i in U %}
+            <tr>
+                <td>{{i.user.name}}</td>
+                <td>{{i.content}}</td>
+                <td>
+                    {% if i.c_status == 0 %}
+                    <p><a href="{% url 'webadmin:Reply' i.id %}">Reply</a></p>
+                    {% else %}
+                    <p>Replied</p>
+                    {% endif %}  
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br><br>
+        <center><h2>Agency Complaints</h2></center><br>
+        <table align="center" border="1">
+            <tr>
+                <th>Agency Name</th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+            
+            {% for i in A %}
+            <tr>
+                <td>{{i.agency.ag_name}}</td>
+                <td>{{i.content}}</td>
+                <td>
+                    
+                    {% if i.c_status == 0 %}
+                    <p><a href="{% url 'webadmin:Reply' i.id %}">Reply</a></p>
+                    {% else %}
+                    <p>Replied</p>
+                    {% endif %}
+                        
+                </td>
+            </tr>
+            {% endfor %}
+                
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+{% endblock content %}

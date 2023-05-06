@@ -1,0 +1,43 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <div id="tab">
+        <br><br><center><h2>New User List</h2></center><br><br>
+    <form action="" method="post">
+        <table align="center" border="2">
+            <tr>
+                <th>User Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>District</th>
+                <th>Place</th>
+            </tr>
+            {% for i in UL %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.contact}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.address}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.place.district}}</td>
+                <td>{{i.place}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+{% endblock content %}

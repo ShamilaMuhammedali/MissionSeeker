@@ -1,0 +1,52 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User_Profile</title>
+</head>
+<body>
+    {%  block content %}
+    <br><br><br><br>
+    <div id="tab">
+        <br><br><center><h2>Profile</h2></center><br><br>
+    <form action="" method="post">
+        <table border="3" align="center">
+            <tr>
+                <td>Name</td>
+                <td>{{Profile.name}}</td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{Profile.contact}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{Profile.email}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{Profile.address}}</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>{{Profile.gender}}</td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>{{Profile.place}}</td>
+            </tr>
+            <tr>
+                <td><a href="{% url 'user:U_EditProfile' Profile.id %}">EditProfile</a></td>
+                <td><a href="{% url 'user:U_ChangePwd' Profile.id %}">ChangePassword</a></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'agency/Head.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%  block content %}
+    <br><br><br><br>
+    <div id="tab">
+        <br><br><center><h2>Rejected Crime</h2></center><br><br>
+    <form action="" method="post">
+        <table align="center" border="2">
+            <tr>
+                <th>User Name</th>
+                <th>Crime Type</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            {% for i in C %}
+            <tr>
+                <td>{{i.user.name}}</td>
+                <td>{{i.crimetype}}</td>
+                <td>{{i.crime_description}}</td>
+                <td><a href="{% url 'agency:Accept_Crime' i.id %}">Accept</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+<br><br>
+{% endblock content %}
